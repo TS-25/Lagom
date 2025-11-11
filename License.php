@@ -28,7 +28,7 @@ class License
     /** @var array $lastRemoteCheck */
     private $activationCache = [];
     /** @var array $licenseDetails */
-    private $licenseDetails = ["status" => "Active", "service_status" => "Active", "license_status" => "Active", "nextduedate" => "2099-10-01", "version" => "1.0.0", "fullversion" => "1.0.0", "lastRemoteChecked" => "2099-10-01", "lastRemoteCheckedFail" => "", "lastRemoteCheckedSuccess" => "2099-10-01", "regdate" => "2023-10-01", "first_payment_amount" => "$0", "recuring_amount" => "$0", "payment_method" => "ShayanXtreme", "warningShowDate" => "", "deactivationDate" => "2099-10-01"];
+    private $licenseDetails = ["status" => "Active", "service_status" => "Active", "license_status" => "Active", "nextduedate" => "2099-10-01", "version" => "1.0.0", "fullversion" => "1.0.0", "lastRemoteChecked" => "2099-10-01", "lastRemoteCheckedFail" => "", "lastRemoteCheckedSuccess" => "2099-10-01", "regdate" => "2023-10-01", "first_payment_amount" => "$0", "recuring_amount" => "$0", "payment_method" => "Babiato", "warningShowDate" => "", "deactivationDate" => "2099-10-01"];
     /** @var array $rawLicenseDetails */
     private $rawLicenseDetails = NULL;
     /** @var string $licenseEncoded */
@@ -275,34 +275,23 @@ class License
         if (!empty($licenseKey)) {
             $licenseFields["ip"] = $_SERVER['SERVER_ADDR'];
             // Assign each element from $array
-            $results["lastRemoteChecked"] = date("Y-m-d");
-            $results["status"] = "Active";
+            $results["status"] = "";
             $results["service_status"] = "Active";
             $results["license_status"] = "Active";
-            $results["registeredname"] = "ShayanXtreme";
-            $results["email"] = "ShayanXtreme";
-            $results["serviceid"] = "130891";
-            $results["productid"] = "19";
-            $results["productname"] = "Single Domain";
-            $results["version"] = $version;
-            $results["fullversion"] = "Lagom " . $version;
-            $results["regdate"] = date("Y-m-d");
-            $results["nextduedate"] = "2924-09-16";
-            $results["billingcycle"] = "Annually";
-            $results["first_payment_amount"] = "\$129.00";
-            $results["recuring_amount"] = "\$129.00";
-            $results["payment_method"] = "PayPal";
+            $results["nextduedate"] = "2099-10-01";
+            $results["version"] = "1.0.0";
+            $results["fullversion"] = "1.0.0";
+            $results["lastRemoteChecked"] = date("Y-m-d");
+            $results["lastRemoteCheckedFail"] = "";
+            $results["regdate"] = "2023-10-01";
+            $results["first_payment_amount"] = "$0";
+            $results["recuring_amount"] = "$0";
+            $results["payment_method"] = "BusyBrain";
+            $results["warningShowDate"] = "";
+            $results["deactivationDate"] = "2099-10-01";
 
-            $results["validdomain"] = self::getDomain() . ",www." . self::getDomain();
-            $results["extensions"] = "Client Notifications,Promotion Manager,Website Builder,Email Template,Custom Code,Support Hours";
-            $results["validdirectory"] = self::getDirPath();
-            $results["configoptions"] = "domain_conflict|Allow Domain Conflict=|dir_conflict|Allow Directory Conflict=|ip_conflict|Allow IP Conflict=";
-            $results["domainconnflict"] = "no";
-            $results["ipconflict"] = "no";
-            $results["dirconflict"] = "no";
             $results["lastRemoteCheckedSuccess"] = date("Y-m-d");
-            $results["remoteChecked"] = "1";
-            
+            $results["remoteChecked"] = true;
             self::logDetails("RSThemes", "checkRemoteLicense-3", $licenseFields, $results);
             return $results;
         }
@@ -463,7 +452,7 @@ class License
                 $html .= "<div class=\"alert alert--outline has-icon alert--border-left alert--license alert--danger\"><div class=\"alert__body\">";
                 $html .= str_replace("%days%", $days, \RSThemes\Helpers\Messages::get("warnings.9"));
                 $html = str_replace("<b>ERROR:", "<b>ERROR: Lagom WHMCS Client Theme", $html);
-                $html .= "</div><div class=\"alert__actions\">\n                            <a class=\"btn btn-default\" href=\"#\" target=\"_blank\">Support</a>\n                            </div>";
+                $html .= "</div><div class=\"alert__actions\">\n                            <a class=\"btn btn-default\" href=\"https://rsstudio.net/my-account/submitticket.php?step=2&deptid=7\" target=\"_blank\">Contact Us</a>\n                            </div>";
                 $html .= "</div>";
                 $html .= "<style>\n                    @font-face {\n                        font-family: \"Material-Design-Iconic-Font\";\n                        src: url(\"https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0//fonts/Material-Design-Iconic-Font.woff2?v=2.2.0\") format(\"woff2\"), url(\"https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0//fonts/Material-Design-Iconic-Font.woff?v=2.2.0\") format(\"woff\"), url(\"https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0//fonts/Material-Design-Iconic-Font.ttf?v=2.2.0\") format(\"truetype\");\n                        font-weight: normal;\n                        font-style: normal;\n                    }\n                    .alert--license{\n                        position: relative;\n                        display: flex;\n                        justify-content: space-between;\n                        align-items: center;\n                        flex-flow: row wrap;\n                        padding: 13px 16px 13px 56px;\n                       \n                        margin-bottom: 32px;\n                        border: none;\n                        box-shadow: 0 2px 8px rgba(0,0,0,0.08);\n                        background: #fff;\n                        \n                    }\n                    .alert--license.alert--danger{\n                        color: #e53e3e;\n                        border-color: #e53e3e;\n                    }\n                    .alert--license *{\n                        box-sizing: border-box;\n                    }\n                    .alert--license:before{\n                        position: absolute;\n                        top: 50%;\n                        left: 15px;\n                        width: 24px;\n                        height: 24px;\n                        margin-top: -12px;\n                        text-align: center;\n                        font-family: Material-Design-Iconic-Font;\n                        font-size: 24px;\n                        line-height: 22px;\n                    }\n                    .alert--license.alert--danger:before{\n                        content: \"\\f1f4\";\n                    }\n                    .alert--license .alert__body{\n                        flex: 1;\n                        margin-right: auto;\n                    }\n                    .alert--license b{\n                        font-size: 14px;\n                        display: block;\n                        margin-bottom: 8px;\n                    }\n                    .alert--license b .hidden{\n                        display: inline-block!important;\n                    }\n                    .alert--license p{\n                        color: #505459;\n                        margin-bottom: 0;\n                    }\n                    .alert--license .alert__actions{\n                        display: flex;\n                        flex: 0 1 auto;\n                        white-space: nowrap;\n                    }\n                    .alert--license .alert__actions>*+* {\n                        margin-left: 16px;\n                    }\n                    .alert--license .alert__actions:last-child{\n                        margin-left: 16px;\n                    }\n                    .alert--license:after{\n                        position: absolute;\n                        top: -1px;\n                        bottom: -1px;\n                        left: -1px;\n                        content: \"\";\n                        border-radius: 3px 0 0 3px;\n                        border-left: 4px solid;\n                    }\n                    .widget-settings{\n                        margin-top: -28px;\n                    }\n                </style>";
             }
